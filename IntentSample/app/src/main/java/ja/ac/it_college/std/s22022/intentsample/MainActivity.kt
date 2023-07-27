@@ -1,5 +1,6 @@
 package ja.ac.it_college.std.s22022.intentsample
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
@@ -16,7 +17,19 @@ class MainActivity : AppCompatActivity() {
 
         binding.lvMenu.apply {
             // アダプターとデータをリセット
-            adapter = MenuListAdapter(menuList)
+            adapter = MenuListAdapter(menuList) {name, price ->
+                // アイテムを選択されたときの処理はここに書くことができる
+                // インテントオブジェクトの作成
+                val intent2MenuThanks = Intent(
+                    this@MainActivity,
+                    MenuThanksActivity::class.java
+                )
+                // 次の画面に送るデータをセットする
+                intent2MenuThanks.putExtra("menuName", name)
+                intent2MenuThanks.putExtra("menuPrice", price)
+                // 次の画面を起動
+                startActivity(intent2MenuThanks)
+            }
 
             // RecyclerView の表示に関する設定
             LinearLayoutManager(this@MainActivity).let {
