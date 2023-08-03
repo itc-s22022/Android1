@@ -6,52 +6,50 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import ja.ac.it_college.std.s22022.lifecyclesample.databinding.ActivityMainBinding
+import ja.ac.it_college.std.s22022.lifecyclesample.databinding.ActivitySubBinding
 
-
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class SubActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySubBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.i("LifeCycleSample", "Main onCreate() called." )
+        Log.i("LifeCycleSample", "Sub onCreate() called.")
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivitySubBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btNext.setOnClickListener(::onNextClick)
+        binding.btPrevious.setOnClickListener(::onPreviousClick)
     }
 
     override fun onStart() {
-        Log.i("LifeCycleSample", "Main onStart() called.")
+        Log.i("LifeCycleSample", "Sub onStart() called.")
         super.onStart()
     }
 
     override fun onRestart() {
-        Log.i("LifeCycleSample", "Main onRestart() called.")
+        Log.i("LifeCycleSample", "Sub onRestart() called.")
         super.onRestart()
     }
 
     override fun onResume() {
-        Log.i("LifeCycleSample", "Main onResume() called.")
+        Log.i("LifeCycleSample", "Sub onResume() called.")
         super.onResume()
     }
 
     override fun onPause() {
-        Log.i("LifeCycleSample", "Main onPause() called.")
+        Log.i("LifeCycleSample", "Sub onPause() called.")
         super.onPause()
     }
 
     override fun onStop() {
-        Log.i("LifeCycleSample", "Main onStop() called.")
+        Log.i("LifeCycleSample", "Sub onStop() called.")
         super.onStop()
     }
 
     override fun onDestroy() {
-        Log.i("LifeCycleSample", "Main onDestroy() called.")
+        Log.i("LifeCycleSample", "Sub onDestroy() called.")
         super.onDestroy()
     }
 
-    private fun onNextClick(view: View) {
-        val intent = Intent(this, SubActivity::class.java)
-        startActivity(intent)
-
+    private fun onPreviousClick(view: View) {
+        finish()
     }
 }
