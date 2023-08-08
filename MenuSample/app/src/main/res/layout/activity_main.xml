@@ -3,5 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"/>
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lvMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="850" />
+</androidx.constraintlayout.widget.ConstraintLayout>
