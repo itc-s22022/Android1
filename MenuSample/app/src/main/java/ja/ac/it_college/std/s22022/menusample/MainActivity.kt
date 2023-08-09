@@ -3,8 +3,10 @@ package ja.ac.it_college.std.s22022.menusample
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +15,8 @@ import ja.ac.it_college.std.s22022.menusample.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val menuList = mutableListOf<ja.ac.it_college.std.s22022.menusample.Menu>()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -26,6 +30,9 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         view.layoutManager = layoutManager
         view.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
+        // コンテキストメニューを有効化する
+        registerForContextMenu(view)
+
     }
 
     private fun order (name: String, price: Int) {
@@ -55,6 +62,19 @@ class MainActivity : AppCompatActivity() {
         menuList.addAll(list)
         binding.lvMenu.adapter?.notifyDataSetChanged()
         return true
+    }
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        // 親クラスの処理
+        super.onCreateContextMenu(menu, v, menuInfo)
+
+        // コンテキストメニューを作る
+        menuInflater.inflate(R.menu.menu_context_menu_list, menu)
+        // コンテキストメニューのヘッダータイトルを設定
+        menu?.setHeaderTitle(R.string.menu_list_context_header)
     }
 
 }
